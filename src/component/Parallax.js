@@ -1,23 +1,27 @@
-import { useEffect, useState } from "react";
-import item1 from "../images/item1.webp";
-import item2 from "../images/item2.png";
+import { useEffect, useState } from 'react';
+import item1 from '../images/item1.webp';
+import item2 from '../images/item2.png';
 
 export default function Parallax() {
   const [position, setPosition] = useState(0);
-  function onScroll() {
+
+  const onScroll = () => {
     setPosition(window.scrollY);
-  }
+  };
+
   useEffect(() => {
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener('scroll', onScroll);
     return () => {
-      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener('scroll', onScroll);
     };
   }, []);
 
+  console.log(position);
+
   return (
-    <div className="wrapper">
+    <div className='wrapper'>
       <div
-        className="bg bg1"
+        className='bg bg1'
         style={{
           backgroundPositionY: position / 2,
         }}
@@ -25,15 +29,15 @@ export default function Parallax() {
         <div>Welcome</div>
       </div>
       <div
-        className="bg bg2"
+        className='bg bg2'
         style={{
-          backgroundPositionY: position / -3,
+          backgroundPositionY: -position / 4,
         }}
       >
         <div>Happy New Year</div>
       </div>
       <p
-        className="desc"
+        className='desc'
         style={{
           transform: `translateX(${-position}px)`,
         }}
@@ -42,7 +46,7 @@ export default function Parallax() {
         tempor incididunt ut labore et dolore magna aliqua.
       </p>
       <p
-        className="desc2"
+        className='desc2'
         style={{
           transform: `translateX(${position}px)`,
         }}
@@ -52,53 +56,39 @@ export default function Parallax() {
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </p>
       <p
-        className="desc3"
+        className='desc3'
         style={{
-          opacity: (position - 700) / 50,
+          opacity: (position - 1500) / 75,
         }}
       >
         Duis aute irure dolor
       </p>
       <p
-        className="desc3"
+        className='desc3'
         style={{
-          opacity: (position - 830) / 50,
+          opacity: (position - 1630) / 75,
         }}
       >
         Lorem ipsum dolor sit amet
       </p>
       <p
-        className="desc3"
+        className='desc3'
         style={{
-          opacity: (position - 960) / 50,
+          opacity: (position - 1760) / 75,
         }}
       >
         Excepteur sint occaecat
       </p>
       <p
-        className="desc3"
+        className='desc3'
         style={{
-          opacity: (position - 1090) / 50,
+          opacity: (position - 1890) / 75,
         }}
       >
         sunt in culpa qui officia deserunt
       </p>
-      <img
-        src={item1}
-        className="item"
-        alt=""
-        style={{
-          transform: `translateY(${position / 2}px)`,
-        }}
-      />
-      <img
-        src={item2}
-        className="item item_snow"
-        alt=""
-        style={{
-          transform: `translateY(${position / 4}px)`,
-        }}
-      />
+      <img src={item1} className='item' alt='' />
+      <img src={item2} className='item item_snow' alt='' />
     </div>
   );
 }
